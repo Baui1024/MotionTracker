@@ -1,0 +1,15 @@
+click==8.0.3
+colorama==0.4.4
+Flask==2.0.2
+imutils==0.5.4
+itsdangerous==2.0.1
+Jinja2==3.0.3
+MarkupSafe==2.0.1
+mysql==0.0.3
+mysqlclient==2.1.0
+numpy==1.22.1
+opencv-python==4.5.5.62
+pip==21.1.2
+setuptools==57.0.0
+Werkzeug==2.0.2
+wheel==0.36.2
