@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block head %}
+
+{% endblock %}
+
+{% block body %}
+
+<div class="content">
+    <script>var Shapes = {{Shapes|tojson}};</script>
+    <script>var Shape = {{Shape|tojson}};</script>
+    <h1>Big Brother is watching you {{ Test123 }}</h1>
+    <div class="wrapper">
+        <div id="preview">
+            <canvas class="canvas" id="paint" width="500" height="283"></canvas>
+            <img class="video" src="{{ url_for('video_feed') }}">
+        </div>
+        <div id="zones">
+            <h1>Create Zone Links</h1>
+            <div class="resetbuttons">
+                <div class="zonebuttons"><button id=circle type="button" onclick="setShapeCircle(this.id)">Circle</button></div>
+                <div class="zonebuttons"><button id=rect type="button" onclick="setShapeRect(this.id)">Rectangle</button></div>
+                <div class="zonebuttons"><button id=resetall type="button" onclick="resetAllShapes(this.id)">Reset All</button></div>
+                <div class="zonebuttons"><button id=reset type="button" onclick="resetShape(this.id)">Reset Zone</button></div>
+            </div>
+            {% for key,Bank in Zones.items() %}
+            <div class="zonewrapper">
+                <h3 style="text-align: center;">{{key}}</h3>
+                <div class="zonetable">
+                {% for Zone,ZoneState in Bank.items() %}
+                    <div class="zonebuttons"><button id={{key+Zone}} type="button" onclick="draw(this.id)">{{Zone}}</button></div>
+                {% endfor %}
+                </div>
+            </div>
+            {%- endfor %}
+        </div>
+    </div>
+</div>
+    <script src="http://code.jquery.com/jquery-1.8.3.js"></script>
+    <script src=" {{ url_for('static', filename='script.js') }}"></script>
+  {% endblock %}
