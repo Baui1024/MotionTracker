@@ -6,7 +6,7 @@ import argparse
 import sqlite3
 import os
 import sys
-print(os.chdir(sys.path[0]))
+print(os.chdir(os.path.dirname(sys.argv[0])))
 
 #need relative path for linux
 conn = sqlite3.connect("database.db", check_same_thread=False)
