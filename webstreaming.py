@@ -8,7 +8,7 @@ import os
 
 
 #need relative path for linux
-path = os.path.abspath(os.getcwd())
+path = os.path.abspath(os.getcwd()) + "/MotionTracker/"
 conn = sqlite3.connect(path + "database.db", check_same_thread=False)
 video = VideoGenerator()
 
@@ -61,7 +61,7 @@ def getAllShapes():
 
 
 # initialize a flask object
-app = Flask(__name__)
+app = Flask(__name__, template_folder=path + "templates")
 # initialize the dictionaries
 Zones = {}
 Shapes = {}
