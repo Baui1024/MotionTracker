@@ -5,10 +5,13 @@ import threading
 import argparse
 import sqlite3
 import os
-import sys
-print(os.chdir(os.path.dirname(sys.argv[0])))
+
 
 #need relative path for linux
+abspath = os.path.abspath(__file__)
+dname = os.path.dirname(abspath)
+os.chdir(dname)
+
 conn = sqlite3.connect("database.db", check_same_thread=False)
 video = VideoGenerator()
 
