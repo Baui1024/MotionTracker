@@ -8,11 +8,8 @@ import os
 
 
 #need relative path for linux
-abspath = os.path.abspath(__file__)
-dname = os.path.dirname(abspath)
-os.chdir(dname)
-
-conn = sqlite3.connect("database.db", check_same_thread=False)
+path = os.path.abspath(os.getcwd())
+conn = sqlite3.connect(path + "database.db", check_same_thread=False)
 video = VideoGenerator()
 
 
