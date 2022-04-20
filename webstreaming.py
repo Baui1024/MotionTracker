@@ -86,7 +86,7 @@ def syncDatabaseWithDic():
     for BankZones in db:
         data = {"shape": BankZones[2], "data": ' '.join([BankZones[3]]).replace("'", "\"")}
         Shapes[BankZones[0]][BankZones[1]] = data
-    print("synced shapes:", Shapes)
+    #print("synced shapes:", Shapes)
     return True
 
 
