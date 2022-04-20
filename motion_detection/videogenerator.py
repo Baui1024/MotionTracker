@@ -10,9 +10,9 @@ import cv2
 class VideoGenerator:
     def __init__(self):
         self.lock = threading.Lock()
-        # self.vs = VideoStream(usePiCamera=1).start() #use for picam
-        self.vs = VideoStream(src=0).start() #use for webcam
-        # time.sleep(2.0)
+        self.vs = VideoStream(usePiCamera=1).start() #use for picam
+        #self.vs = VideoStream(src=0).start() #use for webcam
+        time.sleep(2.0)
         self.outputFrame = None
 
     def detect_motion(self, frameCount):
@@ -30,6 +30,7 @@ class VideoGenerator:
             # convert the frame to grayscale, and blur it
             frame = self.vs.read()
             frame = imutils.resize(frame, width=500)
+            frame = imutils.rotate(frame, angle=180)
             gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
             gray = cv2.GaussianBlur(gray, (7, 7), 0)
             # grab the current timestamp and draw it on the frame

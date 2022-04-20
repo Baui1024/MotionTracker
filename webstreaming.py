@@ -4,7 +4,10 @@ from flask import Flask, Response, render_template, request
 import threading
 import argparse
 import sqlite3
-conn = sqlite3.connect("database.db", check_same_thread=False)
+import os
+import sys
+
+conn = sqlite3.connect(os.chdir(sys.path[0]) + "database.db", check_same_thread=False)
 video = VideoGenerator()
 
 
