@@ -10,7 +10,7 @@ import os
 #need relative path for linux
 path = os.path.abspath(os.getcwd()) + "/MotionTracker/"
 conn = sqlite3.connect(path + "database.db", check_same_thread=False)
-video = VideoGenerator2()
+video = VideoGenerator()
 
 
 # cc = conn.cursor()
