@@ -13,9 +13,9 @@ class VideoGenerator:
         self.path = os.path.abspath(os.getcwd()) + "/MotionTracker/"
         self.face = cv2.CascadeClassifier(self.path + 'data/haarcascade_frontalface_alt2.xml')
         self.cam = PiCamera()
-        self.cam.resolution = (1920, 1080)
+        self.cam.resolution = (1280, 720)
         self.cam.framerate = 32
-        self.cap = PiRGBArray(self.cam, size=(1920, 1080))
+        self.cap = PiRGBArray(self.cam, size=(1280, 720))
         #self.cap = cv2.VideoCapture(self.cam)
         time.sleep(0.1)
         self.outputFrame = None
