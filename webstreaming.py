@@ -1,5 +1,5 @@
 # import the necessary packages
-from motion_detection.videogenerator import VideoGenerator
+from motion_detection.videogenerator2 import VideoGenerator
 from flask import Flask, Response, render_template, request
 import threading
 import argparse

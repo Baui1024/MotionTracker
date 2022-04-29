@@ -2,7 +2,7 @@ import cv2
 import numpy
 from picamera import PiCamera
 
-class face_tracking:
+class VideoGenerator:
 
     def __init__(self):
 
