@@ -15,7 +15,8 @@ class VideoGenerator:
         self.cam = PiCamera()
         self.cam.resolution = (640, 480)
         self.cam.framerate = 32
-        self.cap = PiRGBArray(self.cam, size=(640, 480))
+        #self.cap = PiRGBArray(self.cam, size=(640, 480))
+        self.cap = cv2.VideoCapture(self.cam)
         time.sleep(0.1)
         self.outputFrame = None
 
