@@ -29,16 +29,16 @@ class VideoGenerator:
             #frame = imutils.resize(frame, width=500)
             #frame = imutils.rotate(frame, angle=180)
             gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
-            faces_1 = self.face.detectMultiScale(gray, scaleFactor=1.15, minNeighbors=2)
-            if type(faces_1) == numpy.ndarray:
-
-                for (fx, fy, fw, fh) in faces_1:
-                    image[fy: fy + fh, fx: fx + fw]
-                    color = (255, 0, 0)  # BGR
-                    stroke = 2
-                    end_cord_fx = fx + fw
-                    end_cord_fy = fy + fh
-                    cv2.rectangle(image, (fx, fy), (end_cord_fx, end_cord_fy), color, stroke)
+#            faces_1 = self.face.detectMultiScale(gray, scaleFactor=1.15, minNeighbors=2)
+            #if type(faces_1) == numpy.ndarray:
+#
+ #               for (fx, fy, fw, fh) in faces_1:
+  #                  image[fy: fy + fh, fx: fx + fw]
+   #                 color = (255, 0, 0)  # BGR
+    #                stroke = 2
+     #               end_cord_fx = fx + fw
+      #              end_cord_fy = fy + fh
+       #             cv2.rectangle(image, (fx, fy), (end_cord_fx, end_cord_fy), color, stroke)
 
             with self.lock:
                 self.outputFrame = image.copy()
