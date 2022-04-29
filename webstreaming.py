@@ -176,7 +176,8 @@ if __name__ == '__main__':
                     help="# of frames used to construct the background model")
     args = vars(ap.parse_args())
     # start a thread that will perform motion detection
-    t = threading.Thread(target=video.detect_motion)
+    t = threading.Thread(target=video.detect_motion, args=(
+        args["frame_count"],))
     t.daemon = True
     t.start()
     # start the flask app

@@ -9,6 +9,7 @@ import os
 
 class VideoGenerator:
     def __init__(self):
+        self.lock = threading.Lock()
         self.path = os.path.abspath(os.getcwd()) + "/MotionTracker/"
         self.face = cv2.CascadeClassifier(self.path + 'data/haarcascade_frontalface_alt2.xml')
         self.cam = PiCamera()
