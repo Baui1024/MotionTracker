@@ -38,11 +38,8 @@ class VideoGenerator:
 
             with self.lock:
                 self.outputFrame = frame.copy()
-                #print("something")
-                #cv2.imshow('frame', frame)
 
-                #if cv2.waitKey(20) & 0xFF == ord('q'):
-                #    break
+
     def generate(self):
 
         while True:
