@@ -33,12 +33,12 @@ class VideoGenerator:
             if type(faces_1) == numpy.ndarray:
 
                 for (fx, fy, fw, fh) in faces_1:
-                    frame[fy: fy + fh, fx: fx + fw]
+                    image[fy: fy + fh, fx: fx + fw]
                     color = (255, 0, 0)  # BGR
                     stroke = 2
                     end_cord_fx = fx + fw
                     end_cord_fy = fy + fh
-                    cv2.rectangle(frame, (fx, fy), (end_cord_fx, end_cord_fy), color, stroke)
+                    cv2.rectangle(image, (fx, fy), (end_cord_fx, end_cord_fy), color, stroke)
 
             with self.lock:
                 self.outputFrame = image.copy()
