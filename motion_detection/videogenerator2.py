@@ -23,7 +23,7 @@ class VideoGenerator:
     def detect_motion(self, frameCount):
 
         #while True:
-        for frame in camera.capture_continuous(rawCapture, format="bgr", use_video_port=True):
+        for frame in self.cam.capture_continuous(rawCapture, format="bgr", use_video_port=True):
             #frame = self.cap.read()
             image = frame.array
             #frame = imutils.resize(frame, width=500)
