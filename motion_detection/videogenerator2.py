@@ -42,6 +42,8 @@ class VideoGenerator:
 
             with self.lock:
                 self.outputFrame = image.copy()
+            # clear the stream in preparation for the next frame
+            rawCapture.truncate(0)
 
 
     def generate(self):
