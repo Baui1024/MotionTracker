@@ -15,8 +15,8 @@ class VideoGenerator:
         self.cam = PiCamera()
         self.cam.resolution = (640, 480)
         self.cam.framerate = 32
-        #self.cap = PiRGBArray(self.cam, size=(640, 480))
-        self.cap = cv2.VideoCapture(self.cam)
+        self.cap = PiRGBArray(self.cam, size=(640, 480))
+        #self.cap = cv2.VideoCapture(self.cam)
         time.sleep(0.1)
         self.outputFrame = None
 
@@ -24,9 +24,10 @@ class VideoGenerator:
 
         while True:
             frame = self.cap.read()
+            image = frame.array
             #frame = imutils.resize(frame, width=500)
             #frame = imutils.rotate(frame, angle=180)
-            gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
+            gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
             faces_1 = self.face.detectMultiScale(gray, scaleFactor=1.15, minNeighbors=2)
             if type(faces_1) == numpy.ndarray:
 
@@ -39,7 +40,7 @@ class VideoGenerator:
                     cv2.rectangle(frame, (fx, fy), (end_cord_fx, end_cord_fy), color, stroke)
 
             with self.lock:
-                self.outputFrame = frame.copy()
+                self.outputFrame = image.copy()
 
 
     def generate(self):
