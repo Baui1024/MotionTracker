@@ -42,7 +42,6 @@ class VideoGenerator:
 
 
     def generate(self):
-
         while True:
             with self.lock:
                 if self.outputFrame is None:
@@ -51,7 +50,7 @@ class VideoGenerator:
                 (flag, encodedImage) = cv2.imencode(".jpg", self.outputFrame)
                 if not flag:
                     continue
-                yield (b'--frame\r\n' b'Content-Type: image/jpeg\r\n\r\n' +
-                       bytearray(encodedImage) + b'\r\n')
+            yield (b'--frame\r\n' b'Content-Type: image/jpeg\r\n\r\n' +
+                    bytearray(encodedImage) + b'\r\n')
                 #self.cap.release()
                 #cv2.destroyAllWindows()
