@@ -28,7 +28,7 @@ class VideoGenerator:
             image = frame.array
             #frame = imutils.resize(frame, width=500)
             #frame = imutils.rotate(frame, angle=180)
-            gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+#            gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
 #            faces_1 = self.face.detectMultiScale(gray, scaleFactor=1.15, minNeighbors=2)
             #if type(faces_1) == numpy.ndarray:
 #
