@@ -8,7 +8,6 @@ import threading
 import os
 
 class VideoGenerator:
-
     def __init__(self):
         self.path = os.path.abspath(os.getcwd()) + "/MotionTracker/"
         self.face = cv2.CascadeClassifier(self.path + 'data/haarcascade_frontalface_alt2.xml')
@@ -44,7 +43,7 @@ class VideoGenerator:
 
                 #if cv2.waitKey(20) & 0xFF == ord('q'):
                 #    break
-    def genereate(self):
+    def generate(self):
 
         while True:
             with self.lock:
