@@ -1,6 +1,7 @@
 import cv2
 import numpy
 from picamera import PiCamera
+import time
 
 class VideoGenerator:
 
@@ -8,7 +9,10 @@ class VideoGenerator:
 
         self.face = cv2.CascadeClassifier('cv2/data/haarcascade_frontalface_alt2.xml')
         self.cam = PiCamera()
-        self.cap = cv2.VideoCapture(self.cam)
+        self.cam.resolution = (640, 480)
+        self.cam.framerate = 32
+        self.cap = PiRGBArray(camera, size=(640, 480))
+        self.time.sleep(0.1)
 
     def generate(self):
 
