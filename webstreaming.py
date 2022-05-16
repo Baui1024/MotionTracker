@@ -7,6 +7,36 @@ import sqlite3
 import os
 
 
+
+# check to see if this is the main thread of execution
+if __name__ == '__main__':
+    # construct the argument parser and parse command line arguments
+    ap = argparse.ArgumentParser()
+    ap.add_argument("-i", "--ip", type=str, default="0.0.0.0",
+                    help="ip address of the device")
+    ap.add_argument("-o", "--port", type=int, default="8090",
+                    help="ephemeral port number of the server (1024 to 65535)")
+    ap.add_argument("-f", "--frame-count", type=int, default=32,
+                    help="# of frames used to construct the background model")
+    ap.add_argument("-p", "--picamera", type=int, default=-1,
+                         help="whether or not the Raspberry Pi camera should be used")
+    args = vars(ap.parse_args())
+    path = ""
+    if args["picamera"] > 0:
+        path = os.path.abspath(os.getcwd()) + "/MotionTracker/"
+
+    video = VideoGenerator(piCamera=args["picamera"] > 0)
+    # start a thread that will perform motion detection
+    t = threading.Thread(target=video.detect_motion, args=(
+        args["frame_count"],))
+    t.daemon = True
+    t.start()
+    # start the flask app
+    app.run(host=args["ip"], port=args["port"], debug=True,
+            threaded=True, use_reloader=False)
+    # release the video stream pointer
+    video.vs.stop()
+
 #need relative path for linux
 #path = os.path.abspath(os.getcwd()) + "/MotionTracker/"
 conn = sqlite3.connect(path + "database.db", check_same_thread=False)
@@ -164,31 +194,5 @@ def video_feed():
                     mimetype="multipart/x-mixed-replace; boundary=frame")
 
 
-# check to see if this is the main thread of execution
-if __name__ == '__main__':
-    # construct the argument parser and parse command line arguments
-    ap = argparse.ArgumentParser()
-    ap.add_argument("-i", "--ip", type=str, default="0.0.0.0",
-                    help="ip address of the device")
-    ap.add_argument("-o", "--port", type=int, default="8090",
-                    help="ephemeral port number of the server (1024 to 65535)")
-    ap.add_argument("-f", "--frame-count", type=int, default=32,
-                    help="# of frames used to construct the background model")
-    ap.add_argument("-p", "--picamera", type=int, default=-1,
-                         help="whether or not the Raspberry Pi camera should be used")
-    args = vars(ap.parse_args())
-    path = ""
-    if args["picamera"] > 0:
-        path = os.path.abspath(os.getcwd()) + "/MotionTracker/"
-    video = VideoGenerator(piCamera=args["picamera"] > 0)
-    # start a thread that will perform motion detection
-    t = threading.Thread(target=video.detect_motion, args=(
-        args["frame_count"],))
-    t.daemon = True
-    t.start()
-    # start the flask app
-    app.run(host=args["ip"], port=args["port"], debug=True,
-            threaded=True, use_reloader=False)
-    # release the video stream pointer
-    video.vs.stop()
+
 
