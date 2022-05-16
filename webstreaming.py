@@ -178,6 +178,8 @@ if __name__ == '__main__':
     ap.add_argument("-p", "--picamera", type=int, default=-1,
                          help="whether or not the Raspberry Pi camera should be used")
     args = vars(ap.parse_args())
+    if args["picamera"] > 0:
+        path = os.path.abspath(os.getcwd()) + "/MotionTracker/"
     video = VideoGenerator(piCamera=args["picamera"] > 0)
     # start a thread that will perform motion detection
     t = threading.Thread(target=video.detect_motion, args=(
