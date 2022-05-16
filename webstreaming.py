@@ -9,7 +9,6 @@ import os
 
 #need relative path for linux
 #path = os.path.abspath(os.getcwd()) + "/MotionTracker/"
-path = ""
 conn = sqlite3.connect(path + "database.db", check_same_thread=False)
 #video = VideoGenerator(usePiCamera=args["picamera"] > 0)
 
@@ -180,6 +179,8 @@ if __name__ == '__main__':
     args = vars(ap.parse_args())
     if args["picamera"] > 0:
         path = os.path.abspath(os.getcwd()) + "/MotionTracker/"
+    else:
+        path = ""
     video = VideoGenerator(piCamera=args["picamera"] > 0)
     # start a thread that will perform motion detection
     t = threading.Thread(target=video.detect_motion, args=(
