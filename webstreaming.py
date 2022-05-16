@@ -8,9 +8,10 @@ import os
 
 
 #need relative path for linux
-path = os.path.abspath(os.getcwd()) + "/MotionTracker/"
+#path = os.path.abspath(os.getcwd()) + "/MotionTracker/"
+path = ""
 conn = sqlite3.connect(path + "database.db", check_same_thread=False)
-video = VideoGenerator()
+#video = VideoGenerator(usePiCamera=args["picamera"] > 0)
 
 
 # cc = conn.cursor()
@@ -174,7 +175,10 @@ if __name__ == '__main__':
                     help="ephemeral port number of the server (1024 to 65535)")
     ap.add_argument("-f", "--frame-count", type=int, default=32,
                     help="# of frames used to construct the background model")
+    ap.add_argument("-p", "--picamera", type=int, default=-1,
+                         help="whether or not the Raspberry Pi camera should be used")
     args = vars(ap.parse_args())
+    video = VideoGenerator(piCamera=args["picamera"] > 0)
     # start a thread that will perform motion detection
     t = threading.Thread(target=video.detect_motion, args=(
         args["frame_count"],))
@@ -185,3 +189,4 @@ if __name__ == '__main__':
             threaded=True, use_reloader=False)
     # release the video stream pointer
     video.vs.stop()
+
