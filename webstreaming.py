@@ -31,6 +31,12 @@ if __name__ == '__main__':
         args["frame_count"],))
     t.daemon = True
     t.start()
+    # initialize a flask object
+    app = Flask(__name__, template_folder=path + "templates")
+    # initialize the dictionaries
+    Zones = {}
+    Shapes = {}
+    Shape = "rect"
     # start the flask app
     app.run(host=args["ip"], port=args["port"], debug=True,
             threaded=True, use_reloader=False)
@@ -89,13 +95,6 @@ def getAllShapes():
     else:
         return []
 
-
-# initialize a flask object
-app = Flask(__name__, template_folder=path + "templates")
-# initialize the dictionaries
-Zones = {}
-Shapes = {}
-Shape = "rect"
 
 
 # initialize the Dictionaries
